@@ -12,8 +12,8 @@ import java.util.List;
 public class main {
 
     public static void main(String[] args) {
-        int limit = 1000;
         List<Integer> integers = new ArrayList<>();
+        int limit = 1000;
         for (int i = 1; i < limit; i++) {
             if ((i % 3) == 0 || (i % 5) == 0) {
                 integers.add(i);
