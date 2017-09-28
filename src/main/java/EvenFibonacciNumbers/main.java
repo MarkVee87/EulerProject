@@ -15,20 +15,21 @@ public class main {
 
     public static void main(String[] args) {
 
-        List<Integer> fibonacciEvenValsSum = new ArrayList<>();
-        int limit = 10, n1 = 0, n2 = 1, n3, finalValue;
+        List<Long> fibonacciEvenValsSum = new ArrayList<>();
+        long limit = 4000000, n1 = 0, n2 = 1, n3, finalValue;
 
-        System.out.println(n1 + "\n" + n2);
+//        System.out.println(n1 + "\n" + n2);
 
-        for (int i = 0; i < limit; i++) {
+        for (long i = 0; i < limit; i++) {
             n3 = n1 + n2;
-            System.out.println(n3);
-            fibonacciEvenValsSum.add(n3);
+            if((n3 % 2) == 0){
+                fibonacciEvenValsSum.add(n3);
+            }
             n1 = n2;
             n2 = n3;
         }
 
-        finalValue = fibonacciEvenValsSum.stream().mapToInt(i -> i).sum();
+        finalValue = fibonacciEvenValsSum.stream().mapToLong(i -> i).sum();
         System.out.println(finalValue);
     }
 }
