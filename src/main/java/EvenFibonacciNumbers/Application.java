@@ -12,9 +12,7 @@ public class Application {
 
     public static void main(String[] args) {
         {
-            int n1 = 0;
-            int n2 = 1;
-            int n3;
+            int n1 = 0, n2 = 1, n3;
             int seqValue = 0;
             int limit = 4000000;
             int sum = 0;
@@ -23,17 +21,17 @@ public class Application {
                 n3 = n1 + n2;
                 n1 = n2;
                 n2 = n3;
-                seqValue = n2;
-                if (seqValue > 4000000) {
+                if (n2 > 4000000) {
                     break;
                 }
-                if (seqValue % 2 == 0) {
-                    System.out.println(seqValue);
-                    sum = sum + seqValue;
-                    System.out.println("sum :" + sum);
+                if (n2 % 2 == 0) {
+                    System.out.println(n2);
+                    sum = sum + n2;
+                    System.out.println("Running total: " + sum);
                 }
+                seqValue++;
             }
-            System.out.println("Final sum: " + sum);
+            System.out.println("Final total sum of even fibonacci values up to " + limit + ": " + sum);
         }
     }
 }
