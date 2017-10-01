@@ -21,7 +21,7 @@ public class Application {
                 n3 = n1 + n2;
                 n1 = n2;
                 n2 = n3;
-                if (n2 > 4000000) {
+                if (n2 > limit) {
                     break;
                 }
                 if (n2 % 2 == 0) {
