@@ -18,19 +18,19 @@ public class Application {
 
         long number = 600851475143L;
 
-        System.out.println("Primefactors of " + number);
+        System.out.println("Primefactors of " + number + " are:");
+
         for (Integer integer : primeFactors(number)) {
             System.out.println(integer);
         }
     }
 
     private static List<Integer> primeFactors(long number) {
-        long n = number;
         List<Integer> factors = new ArrayList<>();
-        for (int i = 2; i <= n; i++) {
-            while (n % i == 0) {
+        for (int i = 2; i <= number; i++) {
+            while (number % i == 0) {
                 factors.add(i);
-                n /= i;
+                number /= i;
             }
         }
         return factors;
