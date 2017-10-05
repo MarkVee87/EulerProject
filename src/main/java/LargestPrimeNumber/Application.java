@@ -8,9 +8,9 @@ What is the largest prime factor of the number 600851475143 ?
 itself and one
 */
 
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 
 public class Application {
 
@@ -19,20 +19,29 @@ public class Application {
         long number = 600851475143L;
 
         System.out.println("Primefactors of " + number + " are:");
-
-        for (Integer integer : primeFactors(number)) {
-            System.out.println(integer);
-        }
+        List<Long> list = primeFactors(number);
+        list.forEach(System.out::println);
     }
 
-    private static List<Integer> primeFactors(long number) {
-        List<Integer> factors = new ArrayList<>();
-        for (int i = 2; i <= number; i++) {
-            while (number % i == 0) {
-                factors.add(i);
-                number /= i;
-            }
-        }
+    private static List<Long> primeFactors(long number) {
+
+//         List<Long> factors = new ArrayList<>();
+//         for (long i = 2; i <= number; i++) {
+//             while (number % i == 0) {
+//                 factors.add(i);
+//                 number /= i;
+//             }
+//         }
+//        return factors;
+
+
+        List<Long> factors;
+        factors = LongStream.range(2, number)
+                .boxed()
+                .filter(x -> number % x == 0)
+                .collect(Collectors.toList());
         return factors;
     }
+
+
 }
