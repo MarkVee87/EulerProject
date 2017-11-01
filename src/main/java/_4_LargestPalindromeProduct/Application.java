@@ -12,14 +12,34 @@ import java.util.stream.IntStream;
 
 public class Application {
 
+    private static long oldJavaDuration;
+    private static long newJavaDuration;
+
     public static void main(String[] args) {
-
         yeOldeJava();
-
         java8Stream();
+        findFastest();
     }
 
-    private static void yeOldeJava(){
+    private static void findFastest() {
+
+        System.out.println("\n" + "Pre-Java8 time (ms): " + oldJavaDuration);
+        System.out.println("Java8 time (ms) " + newJavaDuration);
+        long diff, percentDiff;
+
+        if (oldJavaDuration > newJavaDuration) {
+            diff = oldJavaDuration - newJavaDuration;
+            percentDiff = (long) ((float) oldJavaDuration / newJavaDuration) * 100;
+            System.out.println("Java8 method was faster by " + diff + "ms, " + percentDiff + "%");
+        } else {
+            diff = newJavaDuration - oldJavaDuration;
+            percentDiff = (long) (((float) newJavaDuration / oldJavaDuration) * 100);
+            System.out.println("Pre-Java8 method was faster by " + diff + "ms, " + percentDiff + "%");
+        }
+    }
+
+    private static void yeOldeJava() {
+        long start = System.currentTimeMillis();
         int a, b;
         int highestCurrentPalindrome = 0;
         int count = 0;
@@ -37,11 +57,16 @@ public class Application {
                 }
             }
         }
-        System.out.println(count + " palindromes found");
+
+        long end = System.currentTimeMillis();
+        oldJavaDuration = end - start;
+
+        System.out.println("\n" + count + " palindromes found");
         System.out.println(highestCurrentPalindrome + " is the highest palindrome using the product of two three-digit numbers");
     }
 
-    private static void java8Stream(){
+    private static void java8Stream() {
+        long start = System.currentTimeMillis();
         final int[] count = {0};
         final int[] highestCurrentPalindrome = {0};
 
@@ -49,19 +74,21 @@ public class Application {
 
         IntStream.rangeClosed(100, 999)
                 .forEach(x -> IntStream.rangeClosed(100, 999)
-                        .forEach(
-                                p -> {
-                                    final int c = x * p;
-                                    if (palindrome.isPalindrome(c)) {
-                                        System.out.println(c);
-                                        if (c > highestCurrentPalindrome[0]) {
-                                            highestCurrentPalindrome[0] = c;
-                                        }
-                                        count[0]++;
-                                    }
-                                }));
+                        .forEach(p -> {
+                            final int c = x * p;
+                            if (palindrome.isPalindrome(c)) {
+                                System.out.println(c);
+                                if (c > highestCurrentPalindrome[0]) {
+                                    highestCurrentPalindrome[0] = c;
+                                }
+                                count[0]++;
+                            }
+                        }));
 
-        System.out.println(count[0] + " palindromes found");
+        long end = System.currentTimeMillis();
+        newJavaDuration = end - start;
+
+        System.out.println("\n" + count[0] + " palindromes found");
         System.out.println(highestCurrentPalindrome[0] + " is the highest palindrome using the product of two three-digit numbers");
     }
 }
