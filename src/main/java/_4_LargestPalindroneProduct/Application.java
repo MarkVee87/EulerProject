@@ -8,9 +8,6 @@ Find the largest Palindrome made from the product of two 3-digit numbers.
 906609
 */
 
-import org.junit.Assert;
-import org.junit.Test;
-
 public class Application {
 
     public static void main(String[] args) {
@@ -35,15 +32,5 @@ public class Application {
         }
         System.out.println(count + " palindromes found");
         System.out.println(highestCurrentPalindrome + " is the highest palindrome using the product of two three-digit numbers");
-    }
-
-    @Test
-    public void palindromeTest(){
-        Palindrome palindrome = new Palindrome();
-
-        Assert.assertEquals(false, palindrome.isPalindrome(1234));
-        Assert.assertEquals(false, palindrome.isPalindrome(12342));
-        Assert.assertEquals(true, palindrome.isPalindrome(12321));
-        Assert.assertEquals(true, palindrome.isPalindrome(1221));
     }
 }
