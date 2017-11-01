@@ -1,4 +1,4 @@
-package _4_LargestPalindroneProduct;
+package _4_LargestPalindromeProduct;
 
 /*
 A palindromic number reads the same both ways. The largest Palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.

@@ -1,4 +1,4 @@
-package _4_LargestPalindroneProduct;
+package _4_LargestPalindromeProduct;
 
 import org.junit.Assert;
 import org.junit.Test;

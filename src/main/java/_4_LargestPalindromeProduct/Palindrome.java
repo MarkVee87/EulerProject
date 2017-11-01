@@ -1,4 +1,4 @@
-package _4_LargestPalindroneProduct;
+package _4_LargestPalindromeProduct;
 
 import java.util.Objects;
 
