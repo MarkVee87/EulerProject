@@ -20,8 +20,8 @@ public class Application {
         int a, b, c;
         Palindrome palindrome = new Palindrome();
 
-        for (a = 111; a < 1000; a++) {
-            for (b = 111; b < 1000; b++) {
+        for (a = 100; a < 1000; a++) {
+            for (b = 100; b < 1000; b++) {
                 c = a * b;
                 if (palindrome.isPalindrome(c)) {
                     System.out.println(c);
