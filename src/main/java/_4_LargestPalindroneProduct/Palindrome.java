@@ -16,7 +16,7 @@ class Palindrome {
             String[] parts = {value.substring(0, mid),value.substring(mid)};
             return checkSides(parts);
         } else {
-            String[] parts = {value.substring(0, mid),value.substring(mid)};
+            String[] parts = {value.substring(0, mid + 1),value.substring(mid)};
             return checkSides(parts);
         }
     }
