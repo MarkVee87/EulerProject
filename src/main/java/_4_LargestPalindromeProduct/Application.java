@@ -8,6 +8,10 @@ Find the largest Palindrome made from the product of two 3-digit numbers.
 906609
 */
 
+import org.junit.Test;
+
+import java.util.stream.IntStream;
+
 public class Application {
 
     public static void main(String[] args) {
@@ -17,6 +21,11 @@ public class Application {
 
         int a, b, c;
         Palindrome palindrome = new Palindrome();
+
+//        TODO: convert to Java8 stream
+
+
+
 
         for (a = 100; a < 1000; a++) {
             for (b = 100; b < 1000; b++) {
@@ -33,4 +42,13 @@ public class Application {
         System.out.println(count + " palindromes found");
         System.out.println(highestCurrentPalindrome + " is the highest palindrome using the product of two three-digit numbers");
     }
+
+
+    @Test
+    public void streamTest(){
+        int i = 1000;
+        IntStream.range(0, i)
+                .forEach(System.out::println);
+    }
+
 }
