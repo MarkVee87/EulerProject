@@ -12,8 +12,8 @@ import java.util.stream.IntStream;
 
 public class Application {
 
-    private static long oldJavaDuration;
-    private static long newJavaDuration;
+    private static long oldJava8Duration;
+    private static long java8Duration;
 
     public static void main(String[] args) {
         java8Stream();
@@ -28,8 +28,8 @@ public class Application {
 
         Palindrome palindrome = new Palindrome();
 
-        IntStream.rangeClosed(100, 999)
-                .forEach(x -> IntStream.rangeClosed(100, 999)
+        IntStream.rangeClosed(100, 999).parallel()
+                .forEach(x -> IntStream.rangeClosed(100, 999).parallel()
                         .forEach(p -> {
                             final int c = x * p;
                             if (palindrome.isPalindrome(c)) {
@@ -42,7 +42,7 @@ public class Application {
                         }));
 
         long end = System.currentTimeMillis();
-        newJavaDuration = end - start;
+        java8Duration = end - start;
 
         System.out.println("\n" + count[0] + " palindromes found");
         System.out.println(highestCurrentPalindrome[0] + " is the highest palindrome using the product of two three-digit numbers");
@@ -69,7 +69,7 @@ public class Application {
         }
 
         long end = System.currentTimeMillis();
-        oldJavaDuration = end - start;
+        oldJava8Duration = end - start;
 
         System.out.println("\n" + count + " palindromes found");
         System.out.println(highestCurrentPalindrome + " is the highest palindrome using the product of two three-digit numbers");
@@ -77,17 +77,17 @@ public class Application {
 
     private static void findFastest() {
 
-        System.out.println("\n" + "Pre-Java8 time (ms): " + oldJavaDuration);
-        System.out.println("Java8 time (ms) " + newJavaDuration);
+        System.out.println("\n" + "Pre-Java8 time (ms): " + oldJava8Duration);
+        System.out.println("Java8 time (ms) " + java8Duration);
         long diff, percentDiff;
 
-        if (oldJavaDuration > newJavaDuration) {
-            diff = oldJavaDuration - newJavaDuration;
-            percentDiff = (long) ((float) oldJavaDuration / newJavaDuration) * 100;
+        if (oldJava8Duration > java8Duration) {
+            diff = oldJava8Duration - java8Duration;
+            percentDiff = (long) ((float) oldJava8Duration / java8Duration) * 100;
             System.out.println("Java8 method was faster by " + diff + "ms, " + percentDiff + "%");
         } else {
-            diff = newJavaDuration - oldJavaDuration;
-            percentDiff = (long) (((float) newJavaDuration / oldJavaDuration) * 100);
+            diff = java8Duration - oldJava8Duration;
+            percentDiff = (long) (((float) java8Duration / oldJava8Duration) * 100);
             System.out.println("Pre-Java8 method was faster by " + diff + "ms, " + percentDiff + "%");
         }
     }
